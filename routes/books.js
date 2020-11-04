@@ -1,5 +1,9 @@
 const express = require("express");
 const Book = require("../models/book");
+const jsonschema = require("jsonschema");
+const bookSchema = require("../schemas/bookSchema.json");
+
+const {BadRequestError} = require("../expressError");
 
 const router = new express.Router();
 
@@ -30,7 +34,16 @@ router.get("/:id", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   try {
+    const result = jsonschema.validate(req.body, bookSchema);
+    if (!result.valid) {
+      // pass validation errors to error handler
+      //  (the "stack" key is generally the most useful)
+      let errs = result.errors.map(err => err.stack);
+      throw new BadRequestError(errs);
+    }
+
     const book = await Book.create(req.body);
+    console.log("BOOOKKKKKKKKK",book)
     return res.status(201).json({ book });
   } catch (err) {
     return next(err);
@@ -41,6 +54,13 @@ router.post("/", async function (req, res, next) {
 
 router.put("/:isbn", async function (req, res, next) {
   try {
+    const result = jsonschema.validate(req.body, bookSchema);
+    if (!result.valid) {
+      // pass validation errors to error handler
+      //  (the "stack" key is generally the most useful)
+      let errs = result.errors.map(err => err.stack);
+      throw new BadRequestError(errs);
+    }
     const book = await Book.update(req.params.isbn, req.body);
     return res.json({ book });
   } catch (err) {

@@ -1,9 +1,10 @@
 {
   "name": "bookstore-solution",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,13 @@
     "locus": "^2.0.1",
     "pg": "^8.3.0",
     "supertest": "^3.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdontha/express-bookstore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pdontha/express-bookstore/issues"
+  },
+  "homepage": "https://github.com/pdontha/express-bookstore#readme"
 }

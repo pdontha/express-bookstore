@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "http://bookstore.com/book.schema.json",
+  "title": "Book",
+  "description": "Details about books",
+  "type": "object",
+  "properties": {
+    "isbn": {
+      "type": "string"
+    },
+    "amazon_url": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "pages": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "isbn",
+    "amazon_url",
+    "author",
+    "language",
+    "publisher",
+    "title"
+  ]
+}
